@@ -1,21 +1,27 @@
+const buttonContainer = document.querySelector('.button-container');
+const countLabel = document.getElementById("countLbl");
+
+
+function createButton(id, iconClass, onClickFunction, buttonClass) {
+    const button = document.createElement('button');
+    const icon = document.createElement('i');
+    icon.classList.add('fas', iconClass);
+    button.appendChild(icon);
+    button.id = id;
+    button.addEventListener('click', onClickFunction);
+    button.classList.add(buttonClass);
+    return button;
+}
+
+
+function updateCount(change) {
+    count += change;
+    countLabel.textContent = count;
+}
+
 let count = 0;
 
-const buttonContainer = document.querySelector('.button-container');
 
-buttonContainer.addEventListener('click', function(event) {
-    const clickedElement = event.target;
-
-    if (clickedElement.tagName === 'BUTTON' || clickedElement.tagName === 'I') {
-        const parentButton = clickedElement.tagName === 'BUTTON' ? clickedElement : clickedElement.parentElement;
-
-        if (parentButton.id === 'decreaseButton') {
-            count -= 1;
-        } else if (parentButton.id === 'resetButton') {
-            count = 0;
-        } else if (parentButton.id === 'increaseButton') {
-            count += 1;
-        }
-
-        document.getElementById("countLbl").innerHTML = count;
-    }
-});
+buttonContainer.appendChild(createButton('decreaseButton', 'fa-minus', () => updateCount(-1), 'custom-button'));
+buttonContainer.appendChild(createButton('resetButton', 'fa-redo', () => updateCount(-count), 'custom-button'));
+buttonContainer.appendChild(createButton('increaseButton', 'fa-plus', () => updateCount(1), 'custom-button'));

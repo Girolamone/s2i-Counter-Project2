@@ -61,10 +61,10 @@ body {
   background-color: #5cbf6f;
 }
 
-/* Stile specifico per il pulsante di reset */
+
 #resetButton {
   background-color: transparent;
   border: 4px solid #7bff8d;
   color: #7bff8d;
-  padding: 15px 25px; /* Aggiunto padding per una migliore estetica */
+  padding: 15px 25px;
 }
